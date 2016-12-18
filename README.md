@@ -1,5 +1,5 @@
 
-Its a console version of program for parsing *.xml files and save data from them to relational database.
+It's a console version of program for parsing *.xml files and save data from them to relational database.
 
 First of all you should to enter the path of folder to search.
 
