@@ -1,8 +1,12 @@
 
 It's a console version of program for parsing *.xml files and save data from them to relational database.
 
-First of all you should to enter the path of folder to search.
+First of all you should enter the path of folder to search.
 
-Then you can choice to search all *.xml files inside this directory.
+Then you can choice to search all *.xml files inside this directory or not.
 
-If there aren't any files in this folder - program propose to create one random file.
+If there are not any files in this folder - program will propose you to create one random file.
+
+After one work cycle you can type next folder path.
+
+Program will stop if you will enter word 'end' in request of path.
