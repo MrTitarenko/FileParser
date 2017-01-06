@@ -3,6 +3,7 @@ package com.netcracker.fileWorker;
 import com.netcracker.Begin;
 import com.netcracker.entity.*;
 import com.netcracker.podam.SimpleCreator;
+import com.sun.org.apache.xml.internal.serialize.LineSeparator;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -38,9 +39,9 @@ public class XmlReaderWriterImpl implements XmlReaderWriter {
             JAXBContext jaxbContext = JAXBContext.newInstance(DataImpl.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             data = (Data) jaxbUnmarshaller.unmarshal(file);
+            Begin.service.saveData(data);
         } catch (JAXBException e) {
-            e.printStackTrace();
+            System.out.println("XML with wrong structure!" + LineSeparator.Windows + e.getMessage());
         }
-        Begin.service.saveData(data);
     }
 }
