@@ -6,6 +6,9 @@ import com.netcracker.entity.Film;
 import uk.co.jemos.podam.api.AbstractRandomDataProviderStrategy;
 import uk.co.jemos.podam.api.AttributeMetadata;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class CreatedWithStrategy extends AbstractRandomDataProviderStrategy {
@@ -13,6 +16,17 @@ public class CreatedWithStrategy extends AbstractRandomDataProviderStrategy {
 
     public CreatedWithStrategy() {
         super();
+    }
+
+    @Override
+    public int getNumberOfCollectionElements(Class<?> type) {
+        if (Customer.class.getName().equals(type.getName())) {
+            return 1 + random.nextInt(2);
+        } else if (Book.class.getName().equals(type.getName())) {
+            return 1 + random.nextInt(10);
+        }
+        return super.getNumberOfCollectionElements(type);
+
     }
 
     @Override
@@ -31,5 +45,47 @@ public class CreatedWithStrategy extends AbstractRandomDataProviderStrategy {
             }
         }
         return super.getInteger(attributeMetadata);
+    }
+
+    @Override
+    public String getStringValue(AttributeMetadata attributeMetadata) {
+        if ("author".equals(attributeMetadata.getAttributeName())) {
+            return "Stephen King";
+        }
+        if ("name".equals(attributeMetadata.getAttributeName())) {
+            if (Customer.class.equals(attributeMetadata.getPojoClass())) {
+                return Customers.randomCustomer();
+            } else if (Book.class.equals(attributeMetadata.getPojoClass())) {
+                return Books.randomBook();
+            }
+        }
+        return super.getStringValue(attributeMetadata);
+    }
+
+    private enum Customers {
+        BILL, JOE, PAUL, ERICA, JENNA, FRED, ANTONI, MARIA, MARK, SUZANA, MIKE;
+
+        private static final List<Customers> values =
+                Collections.unmodifiableList(Arrays.asList(values()));
+        private static final int size = values.size();
+        private static final Random random = new Random();
+
+        public static String randomCustomer() {
+            return values.get(random.nextInt(size)).toString();
+        }
+    }
+
+    private enum Books {
+        Carrie, The_Shining, The_Long_Walk, Pet_Sematary, It, Misery,
+        The_Dark_Tower, The_Green_Mile, Mr_Mercedes;
+
+        private static final List<Books> values =
+                Collections.unmodifiableList(Arrays.asList(values()));
+        private static final int size = values.size();
+        private static final Random random = new Random();
+
+        public static String randomBook() {
+            return values.get(random.nextInt(size)).toString();
+        }
     }
 }

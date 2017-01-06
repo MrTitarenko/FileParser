@@ -37,7 +37,7 @@ public class Begin {
                 System.out.println("There are no *.xml files. Do you want create?");
                 Scanner in = new Scanner(System.in);
                 if (in.nextLine().toLowerCase().equals("yes")) {
-                    File newFile = new File(folder.getPath()+"/ramdom_xml.xml");
+                    File newFile = new File(folder.getPath() + "/ramdom_xml.xml");
                     XmlReaderWriter xmlReaderWriter = new XmlReaderWriterImpl(newFile);
                     xmlReaderWriter.toXML();
                 }
@@ -46,17 +46,9 @@ public class Begin {
     }
 
     private static void createThreads() {
-        ExecutorService executorService = Executors.newCachedThreadPool();
         for (File file : fileList) {
             System.out.println(file);
-            executorService.execute(new NewThread(file));
-        }
-        executorService.shutdown();
-
-        try {
-            while (!executorService.awaitTermination(1, TimeUnit.MINUTES)) ;
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            new NewThread(file);
         }
     }
 
