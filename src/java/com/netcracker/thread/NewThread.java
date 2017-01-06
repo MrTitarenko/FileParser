@@ -6,8 +6,8 @@ import com.netcracker.fileWorker.XmlReaderWriter;
 import com.netcracker.fileWorker.XmlReaderWriterImpl;
 
 public class NewThread implements Runnable {
-    Thread thread;
-    File file;
+    private final Thread thread;
+    private final File file;
 
     public NewThread(File file) {
         this.file = file;

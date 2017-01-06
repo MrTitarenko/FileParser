@@ -3,18 +3,10 @@ package com.netcracker.service;
 import com.netcracker.dao.Dao;
 import com.netcracker.entity.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
-
-import java.util.Locale;
-
-/**
- * Created by titarenko on 17.12.2016.
- */
 
 public class ServiceImpl implements Service {
 
-    private Dao dao;
+    private final Dao dao;
 
     @Autowired
     ServiceImpl(Dao dao) {

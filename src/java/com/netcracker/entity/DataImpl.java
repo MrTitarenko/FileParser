@@ -8,10 +8,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 
-/**
- * Created by titarenko on 16.12.2016.
- */
-
 @XmlRootElement
 @XmlType(propOrder = {"сustomerList", "bookList", "filmList"})
 public class DataImpl implements Data {

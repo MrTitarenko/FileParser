@@ -16,7 +16,7 @@ import static com.netcracker.dao.Query.*;
 @Repository
 public class DaoImpl implements Dao {
     private static final Logger LOGGER = Logger.getLogger(DaoImpl.class);
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     @Autowired
     public DaoImpl(DataSource dataSource) {
